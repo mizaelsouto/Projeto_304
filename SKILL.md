@@ -1,6 +1,6 @@
 ---
 name: projeto
-description: Gera o relatório final de um projeto de software em PDF e Word no padrão do Relatório Final do Grupo 05: capa, sumário ABNT, critérios da Feira Integrada, telas, tecnologias e anexo de fotos.
+description: Conduz uma entrevista interativa passo a passo (uma pergunta por turno) para coletar dados, inspeciona o código e arquivos reais do projeto atual, e gera o relatório final acadêmico em PDF e Word com fidelidade estrita ao que existe no repositório.
 ---
 
 # Relatório final de projeto (padrão Grupo 05)
@@ -9,75 +9,89 @@ Esta skill produz o relatório final de um projeto de software lendo o material 
 
 Entregáveis: `relatorio.pdf` (versão de entrega), `relatorio.md` (fonte editável) e, se pedido, `relatorio.docx`. Tudo fica em uma pasta `Relatorio_Final/` dentro do projeto; versões anteriores vão para `Relatorio_Final/old/`, nunca são apagadas.
 
-## 1. Fluxo Interativo Obrigatório (Passo a Passo)
+---
 
-> **REGRA DE OURO DA INTERAÇÃO:**  
-> A skill é **estritamente interativa**. **NUNCA** faça todas as perguntas de uma vez nem apresente um formulário longo em bloco. Cada etapa abaixo é **uma pergunta focada**, na qual o agente faz a pergunta, aguarda a resposta digitada pelo usuário e, somente após receber o retorno, avança para a próxima etapa.  
-> Se o projeto já tiver arquivos locais (ex.: `package.json`, `README.md`, etc.), o agente lê esses arquivos previamente e, nas perguntas pertinentes, sugere os valores encontrados perguntando: *"Detectei que o projeto usa React + TypeScript. Confirma ou deseja alterar?"*.
+## 🛑 PROTOCOLO RIGOROSO DE EXECUÇÃO (GUARDRAILS DE INTERAÇÃO)
 
-O fluxo interativo segue rigorosamente estas 8 etapas sequenciais:
-
-### Etapa 1: Instituição de Ensino, Curso e Evento
-- O agente pergunta:
-  1. Nome completo da Instituição de Ensino (ex.: Universidade Federal de Juiz de Fora - UFJF);
-  2. Campus, Instituto ou Departamento;
-  3. Curso de graduação/técnico e disciplina ou evento (ex.: "Licenciatura em Computação | Feira Integrada 2026");
-  4. Período letivo (ex.: 2026.3).
-- **Logotipo da Instituição:** O agente pergunta se o usuário possui arquivo de imagem com o logotipo (PNG/JPG) e orienta a informar o caminho. Se não houver logo, informa que a capa será gerada sem imagem no topo.
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 2: Título, Tema e Dados de Local/Data
-- O agente pergunta:
-  1. Qual é o título oficial do projeto e o subtítulo descritivo (ex.: `Cognitus PDI: Ambiente Interativo Multi-Escola de Aprendizagem de Estruturas Condicionais`);
-  2. Cidade e UF da entrega (ex.: Juiz de Fora - MG);
-  3. Mês e ano para a capa (ex.: NOVEMBRO/2026) e data completa para a folha de identificação.
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 3: Equipe, Autoria e Orientação
-- O agente pergunta:
-  1. Nomes completos de todos os integrantes do grupo e número de matrícula (se aplicável);
-  2. Número ou identificação do grupo (ex.: Grupo 05);
-  3. Nome exato da(o) docente regente ou orientador(a) com a titulação que deve constar no documento.
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 4: Endereços, Repositórios e Apresentação
-- O agente pergunta:
-  1. Qual a URL do repositório no GitHub do projeto;
-  2. Qual o endereço da aplicação hospedada/publicada na internet (se houver, ou se roda apenas localmente);
-  3. Qual o link do vídeo de demonstração/apresentação (YouTube ou TikTok), se houver.
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 5: Gestão das Telas da Aplicação e Fotos dos Integrantes (Anexo A e Seção 6)
-- O agente orienta o usuário que o relatório exige imagens das telas principais da aplicação e fotos dos integrantes para compor a Seção 6.5 e o Anexo A.
-- O agente apresenta **três opções claras** para o usuário escolher como deseja proceder:
-  - **Opção A (A skill roda e gera os prints autonomamente):** Se o projeto tiver aplicação web local ou URL publicada, o agente se oferece para executar a aplicação ou navegar via ferramenta de navegador/Playwright, capturando os screenshots automaticamente das telas principais e salvando na pasta de anexos.
-  - **Opção B (Mostrar o diretório existente):** O usuário informa em qual diretório os prints e fotos já estão salvos na máquina (ex.: `/caminho/para/meus_prints`). O agente lista e valida as imagens encontradas.
-  - **Opção C (Criação de diretório guiado):** O agente cria a estrutura de pastas no projeto (ex.: `Relatorio_Final/anexos/telas/` e `Relatorio_Final/anexos/fotos/`) e orienta a pessoa a colar seus arquivos lá antes de avançar.
-- *O agente aguarda a definição do usuário e só avança após confirmar os arquivos ou o método escolhido.*
-
-### Etapa 6: Atribuições dos Integrantes e Declaração de Uso de IA
-- O agente pergunta:
-  1. Qual foi a responsabilidade e atividade prática desenvolvida por cada integrante da equipe (para compor a tabela de papéis e as Declarações);
-  2. Quais ferramentas de Inteligência Artificial generativa foram utilizadas no trabalho (ex.: ChatGPT, Claude, Antigravity, Copilot), indicando os fabricantes e para quais tarefas foram usadas (apoio no código, revisão textual, elaboração de testes, etc.).
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 7: Critérios de Avaliação e Limites Formais
-- O agente pergunta:
-  1. Se há uma ficha de avaliação específica ou rubrica do professor (ex.: os seis critérios da Feira Integrada com seus respectivos pesos);
-  2. Se há limite máximo de páginas estipulado (o padrão do modelo é até 20 páginas de corpo textual, excluindo capa, sumário, referências e anexos).
-- *O agente aguarda a resposta digitada do usuário antes de prosseguir.*
-
-### Etapa 8: Resumo de Conferência e Pedido Explícito para Geração
-- O agente consolida e exibe um **painel resumo** com todos os dados coletados nas etapas anteriores (Instituição, Título, Autores, Links, Imagens, Papéis e Critérios).
-- **Pergunta Obrigatória de Encerramento:** O agente pergunta explicitamente:
-  > *"Revise as informações acima. Todos os dados estão corretos e confirmados? Deseja que eu gere o relatório final agora (`relatorio.md` e `relatorio.pdf`)?"*
-- **Disparo da Geração:** Somente **após** a resposta positiva do usuário (ex.: "Sim", "Pode gerar", "Confirmado"), o agente passa para a leitura aprofundada dos códigos e executa a geração completa do `relatorio.md`, compilação do `relatorio.pdf` e sincronização do sumário.
+> ⚠️ **REGRA 1: BLOQUEIO TOTAL DE ESCRITA ANTES DA INTERAÇÃO**  
+> É **terminantemente proibido** gerar, escrever ou criar os arquivos `relatorio.md` ou `relatorio.pdf` antes de concluir todas as 8 etapas interativas com o usuário e receber sua autorização explícita na Etapa 8. O agente que começar a escrever o relatório antes de perguntar está em **violação grave** da skill.
+>
+> ⚠️ **REGRA 2: UMA ETAPA POR TURNO (ESTRITAMENTE INTERATIVO)**  
+> É **terminantemente proibido** enviar um formulário com várias etapas juntas ou despejar perguntas em bloco. Cada turno do agente deve conter **apenas a pergunta da etapa atual**, pausando imediatamente a execução para aguardar a resposta digitada pelo usuário.
+>
+> ⚠️ **REGRA 3: TEXTO 100% ANCORADO NO PROJETO REAL (ZERO ALUCINAÇÃO)**  
+> Todo o conteúdo do relatório (problema, público, tecnologias, arquitetura, telas, requisitos e cronograma) deve ser extraído do **código-fonte, documentação e estrutura real do projeto em análise**. É **proibido** copiar descrições, dados fictícios ou regras de projetos de exemplo (como sondas espaciais ou tarefas de outros grupos), a menos que o projeto analisado seja exatamente sobre isso. O que não estiver nos arquivos ou não for dito pelo usuário não entra no relatório.
 
 ---
 
-## 2. Ler o projeto
+## 1. Fluxo Interativo Obrigatório (Turno a Turno)
 
-Leia README, documentação, `package.json`, `requirements.txt`, `pom.xml`, `composer.json`, `Dockerfile`, arquivos de configuração e a árvore de pastas. Levante: problema e público, funcionalidades (rotas, telas, componentes), linguagens (contagem por extensão de arquivo), frameworks e bibliotecas com versões, banco de dados, hospedagem, testes e forma de publicação. Use só o que estiver no projeto ou for dito pelo usuário. O que não puder ser comprovado entra como hipótese ou fica de fora; nunca preencha lacunas com números ou fatos inventados.
+Quando a skill for acionada (ex.: "gere o relatório final deste projeto" ou `/projeto`), o agente faz uma leitura inicial silenciosa do projeto local para se contextualizar e inicia a interação seguindo rigorosamente as etapas abaixo:
+
+### Turno 1 (Etapa 1): Instituição de Ensino, Curso e Evento
+- O agente pergunta:
+  1. Nome completo da Instituição de Ensino (ex.: Universidade Federal de Juiz de Fora - UFJF);
+  2. Campus, Instituto ou Departamento;
+  3. Curso e disciplina ou evento (ex.: "Licenciatura em Computação | Feira Integrada 2026");
+  4. Período letivo (ex.: 2026.3);
+  5. Arquivo de logotipo: possui imagem com o logo (PNG/JPG)? Se sim, qual o caminho?
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário. Não faça a Etapa 2 agora!
+
+### Turno 2 (Etapa 2): Título, Subtítulo e Local/Data
+- O agente pergunta:
+  1. Qual o título oficial do projeto e o subtítulo descritivo;
+  2. Cidade e UF da entrega (ex.: Juiz de Fora - MG);
+  3. Mês e ano para a capa (ex.: NOVEMBRO/2026) e data completa para a folha de rosto.
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário.
+
+### Turno 3 (Etapa 3): Equipe, Autoria e Orientação
+- O agente pergunta:
+  1. Nomes completos de todos os integrantes do grupo e matrículas (se houver);
+  2. Número do grupo (ex.: Grupo 05);
+  3. Nome exato da(o) docente regente ou orientador(a) com sua titulação formal.
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário.
+
+### Turno 4 (Etapa 4): Endereços, Repositórios e Apresentação
+- O agente pergunta:
+  1. URL do repositório no GitHub do projeto;
+  2. Endereço da aplicação em produção/hospedada (se houver, ou se roda localmente);
+  3. Link do vídeo de apresentação (YouTube ou TikTok), se houver.
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário.
+
+### Turno 5 (Etapa 5): Gestão Inteligente das Telas e Fotos (Anexo A e Seção 6.5)
+- O agente orienta que o relatório exige prints das telas principais e fotos dos integrantes.
+- O agente apresenta e pergunta qual das 3 opções o usuário prefere:
+  - **Opção A (Skill executa e gera os prints):** "Deseja que eu execute a aplicação localmente ou acesse a URL publicada com o navegador para capturar os screenshots das telas principais automaticamente?"
+  - **Opção B (Indicar diretório existente):** "Se você já tem os prints e fotos salvos, em qual pasta eles estão?"
+  - **Opção C (Criação de diretório guiado):** "Deseja que eu crie a pasta `Relatorio_Final/anexos/telas/` e `Relatorio_Final/anexos/fotos/` agora para você colocar os arquivos?"
+- **AÇÃO DO AGENTE:** Para e aguarda a decisão do usuário, validando os arquivos de imagem antes de seguir.
+
+### Turno 6 (Etapa 6): Atribuições dos Integrantes e Declaração de Uso de IA
+- O agente pergunta:
+  1. O que cada integrante desenvolveu na prática no projeto (para a tabela de papéis e Declarações);
+  2. Quais ferramentas de IA generativa foram usadas (ex.: Claude, Antigravity, ChatGPT, Copilot), seus fabricantes e para quais finalidades no projeto.
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário.
+
+### Turno 7 (Etapa 7): Critérios de Avaliação e Limites de Páginas
+- O agente pergunta:
+  1. Se há critérios e pesos específicos de avaliação (ex.: os seis critérios da Feira Integrada ou rubrica do professor);
+  2. Se há limite de páginas estipulado (padrão até 20 páginas de corpo textual, excluindo capa, sumário e anexos).
+- **AÇÃO DO AGENTE:** Para e aguarda a resposta do usuário.
+
+### Turno 8 (Etapa 8): Resumo Geral e Pedido Explícito de Autorização
+- O agente consolida tudo o que foi levantado em um **painel resumo de conferência**.
+- Pergunta explicitamente ao usuário:
+  > *"Revise as informações acima. Todos os dados estão corretos? Deseja que eu realize a leitura completa do código do projeto e gere o relatório final agora (`relatorio.md` e `relatorio.pdf`)?"*
+- **AÇÃO DO AGENTE:** **SOMENTE** após o "Sim" ou confirmação explícita do usuário, o agente inicia a geração do relatório.
+
+---
+
+## 2. Ler o Projeto Real (Ancoragem Estrita ao Código)
+
+Ao receber a autorização de geração, o agente inspeciona minuciosamente o projeto:
+1. **Tecnologias e Dependências Reais:** Lê `package.json`, `requirements.txt`, `pom.xml`, `composer.json`, `go.mod`, `Cargo.toml`, etc., levantando versões exatas e finalidades reais de cada biblioteca.
+2. **Arquitetura e Componentes Reais:** Mapeia rotas (`App.tsx`, `routes/`, `views/`, controllers), serviços de backend, tabelas/esquemas de banco de dados (`schema.prisma`, migrations SQL, models) e arquivos de deploy (`Dockerfile`, `docker-compose.yml`).
+3. **Escrita Personalizada e Fiel:** Toda a descrição das seções 1 a 9 deve tratar **do software real do projeto**, explicando sua proposta, suas regras de negócio e suas limitações verdadeiras, sem templates genéricos. O que não for comprovado pelo código ou dito pelo usuário não é incluído.
 
 ## 3. Estrutura obrigatória do `relatorio.md`
 
