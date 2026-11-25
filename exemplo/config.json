@@ -1,0 +1,17 @@
+{
+  "md": "relatorio.md",
+  "pdf": "relatorio.pdf",
+  "capa": {
+    "instituicao": ["INSTITUTO FEDERAL EXEMPLO", "CAMPUS EXEMPLO", "CURSO TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS", "FEIRA INTEGRADA 2026"],
+    "logo": "capa/logo.png",
+    "titulo": "RELATÓRIO FINAL DO PROJETO",
+    "tema": "APP EXEMPLO: Sistema de teste para validar o gerador",
+    "grupo": "GRUPO 01",
+    "integrantes": ["Ana Exemplo", "Bruno Exemplo", "Carla Exemplo", "Davi Exemplo"],
+    "cidade": "CIDADE - UF",
+    "data": "NOVEMBRO/2026"
+  },
+  "cabecalho_esq": "Relatório Final, App Exemplo",
+  "cabecalho_dir": "Instituto Federal Exemplo | Desenvolvimento de Sistemas",
+  "rodape": "Grupo 01 (Ana, Bruno, Carla e Davi) | App Exemplo"
+}
