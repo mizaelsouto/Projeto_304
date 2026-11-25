@@ -29,9 +29,25 @@ A seção 10, Conclusão do grupo, tem uma subseção para cada critério da fic
 
 Fecham o relatório o histórico de revisões, as referências, as declarações (participação de cada integrante e uso de IA) e o Anexo A, com os prints das telas, as fotos dos integrantes e o link do YouTube ou TikTok.
 
+## Como a Skill Funciona: Fluxo Interativo Passo a Passo
+
+A skill opera de forma **estritamente interativa**. Ela não dispara questionários em bloco: conduz uma conversa guiada em 8 etapas, fazendo uma pergunta por vez e aguardando a resposta digitada pelo usuário antes de prosseguir:
+
+1. **Instituição de Ensino, Curso e Evento** (com opção de informar arquivo de logotipo).
+2. **Título, Tema do Projeto e Local/Data**.
+3. **Equipe, Integrantes e Docente/Orientador(a)**.
+4. **Endereços e Links** (Repositório GitHub, URL de produção e vídeo).
+5. **Gestão de Telas e Prints (Com Opção Autônoma da Skill)**:
+   - *Opção A:* A skill se oferece para rodar o projeto ou navegar na URL para tirar os prints automaticamente.
+   - *Opção B:* O usuário indica o caminho da pasta onde as imagens já estão salvas.
+   - *Opção C:* A skill cria a pasta guiada (`anexos/telas/` e `anexos/fotos/`) para a pessoa colocar os arquivos.
+6. **Atribuições dos Integrantes e Declaração de Uso de IA**.
+7. **Critérios de Avaliação e Limite de Páginas**.
+8. **Resumo Geral e Pedido Explícito para Geração**: A skill consolida os dados, exibe um painel de conferência e pede autorização expressa (*"Deseja gerar o relatório agora?"*). Somente após o "Sim", ela gera o `relatorio.md` e compila o `relatorio.pdf`.
+
 ## Instalação
 
-Para instalar no Claude (claude.ai ou aplicativo), compacte esta pasta e envie o arquivo .zip em Configurações, na área de Skills. Para usar no Claude Code, copie a pasta para `~/.claude/skills/projeto/`. Depois disso, basta pedir algo como "gere o relatório final deste projeto". A skill então pergunta a instituição, o logo, o tema, a cidade, a data, os integrantes, os endereços do GitHub, da hospedagem e do vídeo, e onde estão os prints e as fotos.
+Para instalar no Claude (claude.ai ou aplicativo), compacte esta pasta e envie o arquivo .zip em Configurações, na área de Skills. Para usar no Claude Code, copie a pasta para `~/.claude/skills/projeto/`. No Antigravity, ela fica disponível globalmente em `I-A_Skills/projeto-304/.agent/skills/projeto`. Depois disso, basta pedir algo como "gere o relatório final deste projeto" ou ativar a skill `projeto`.
 
 ## Uso direto dos scripts
 
